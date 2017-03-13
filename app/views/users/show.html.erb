@@ -1,0 +1,12 @@
+<html>
+	<body>
+  		<h3>Perfil de <%= @user.name %> </h3>
+  		<%= @user.email %>
+  		<% if current_user == @user %>
+			<ul>
+	           <li><%= link_to "Alterar", edit_user_path(current_user) %></li>
+	           <li><%= link_to "Apagar", @user, method: :delete%></li>
+	        </ul>
+        <%end%>
+  	</body>
+</html>

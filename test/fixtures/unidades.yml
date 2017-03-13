@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: 1
+  descricao: MyString
+  sigla: MyString
+  qtd_dimensao: 1
+  monetaria: false
+
+two:
+  codigo: 1
+  descricao: MyString
+  sigla: MyString
+  qtd_dimensao: 1
+  monetaria: false

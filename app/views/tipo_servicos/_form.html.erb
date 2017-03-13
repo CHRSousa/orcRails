@@ -1,0 +1,33 @@
+<%= form_for(tipo_servico) do |f| %>
+  <% if tipo_servico.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tipo_servico.errors.count, "error") %> prohibited this tipo_servico from being saved:</h2>
+
+      <ul>
+      <% tipo_servico.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :item %>
+    <%= f.text_field :item %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :descricao %>
+    <%= f.text_field :descricao %>
+  </div>
+
+  <div class="field">
+    Pai:
+    <%= f.select :father_id, options_for_select(TipoServico.all.map{|t|[t.descricao, t.id]}.insert(0, "Escolha o Tipo de Serviço Pai"), f.object.father_id) %>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

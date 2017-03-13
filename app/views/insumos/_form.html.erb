@@ -1,0 +1,32 @@
+<%= form_for(insumo) do |f| %>
+  <% if insumo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(insumo.errors.count, "error") %> prohibited this insumo from being saved:</h2>
+
+      <ul>
+      <% insumo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descricao %>
+    <%= f.text_field :descricao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :codigo_seinfra %>
+    <%= f.text_field :codigo_seinfra %>
+  </div>
+
+  <div class="field">
+    <%= f.label :unidade %>
+    <%= f.select :unidade_id, options_for_select(Unidade.all.map{|u|[u.sigla, u.id]}, f.object.unidade_id) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

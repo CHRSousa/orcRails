@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @unidade.codigo %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @unidade.descricao %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @unidade.sigla %>
+</p>
+
+<p>
+  <strong>Qtd dimensao:</strong>
+  <%= @unidade.qtd_dimensao %>
+</p>
+
+<p>
+  <strong>Monetaria:</strong>
+  <%= @unidade.monetaria %>
+</p>
+
+<%= link_to 'Edit', edit_unidade_path(@unidade) %> |
+<%= link_to 'Back', unidades_path %>

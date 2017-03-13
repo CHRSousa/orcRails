@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Unidades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descricao</th>
+      <th>Sigla</th>
+      <th>Qtd dimensao</th>
+      <th>Monetaria</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unidades.each do |unidade| %>
+      <tr>
+        <td><%= unidade.codigo %></td>
+        <td><%= unidade.descricao %></td>
+        <td><%= unidade.sigla %></td>
+        <td><%= unidade.qtd_dimensao %></td>
+        <td><%= unidade.monetaria %></td>
+        <td><%= link_to 'Show', unidade %></td>
+        <td><%= link_to 'Edit', edit_unidade_path(unidade) %></td>
+        <td><%= link_to 'Destroy', unidade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unidade', new_unidade_path %>

@@ -1,0 +1,2 @@
+class Unidade < ApplicationRecord
+end

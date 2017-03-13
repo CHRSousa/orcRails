@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Insumos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descricao</th>
+      <th>Codigo seinfra</th>
+      <th>Unidade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @insumos.each do |insumo| %>
+      <tr>
+        <td><%= insumo.id %></td>
+        <td><%= insumo.descricao %></td>
+        <td><%= insumo.codigo_seinfra %></td>
+        <td><%= insumo.unidade.sigla %></td>
+        <td><%= link_to 'Show', insumo %></td>
+        <td><%= link_to 'Edit', edit_insumo_path(insumo) %></td>
+        <td><%= link_to 'Destroy', insumo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Insumo', new_insumo_path %>

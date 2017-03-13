@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @insumo.id %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @insumo.descricao %>
+</p>
+
+<p>
+  <strong>Codigo seinfra:</strong>
+  <%= @insumo.codigo_seinfra %>
+</p>
+
+<p>
+  <strong>Unidade:</strong>
+  <%= @insumo.unidade.sigla %>
+</p>
+
+<%= link_to 'Edit', edit_insumo_path(@insumo) %> |
+<%= link_to 'Back', insumos_path %>

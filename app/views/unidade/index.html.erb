@@ -1,0 +1,22 @@
+<h1>Lista de Unidades</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Código</th>
+			<th>Descrição</th>
+			<th>Qtd dimensão</th>
+			<th>Monetária</th>
+		</tr>		
+	</thead>
+	<tbody>
+		<% @unidades.each do |u| %>
+		<tr>
+			<td><%= u.codigo %></td>
+			<td><%= u.descricao %></td>
+			<td><%= u.qtd_dimensao %></td>
+			<td><%= u.monetaria %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

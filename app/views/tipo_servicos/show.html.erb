@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @tipo_servico.id %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @tipo_servico.item %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @tipo_servico.descricao %>
+</p>
+
+<p>
+  <strong>Pai:</strong>
+  <% if @tipo_servico.father != nil %>
+  	<%= @tipo_servico.father.descricao %>
+  <%end%>
+</p>
+
+<br>
+
+<%= link_to 'Edit', edit_tipo_servico_path(@tipo_servico) %> |
+<%= link_to 'Back', tipo_servicos_path %>

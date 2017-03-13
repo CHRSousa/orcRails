@@ -1,0 +1,42 @@
+<%= form_for(unidade) do |f| %>
+  <% if unidade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(unidade.errors.count, "error") %> prohibited this unidade from being saved:</h2>
+
+      <ul>
+      <% unidade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :codigo %>
+    <%= f.number_field :codigo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descricao %>
+    <%= f.text_field :descricao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sigla %>
+    <%= f.text_field :sigla %>
+  </div>
+
+  <div class="field">
+    <%= f.label :qtd_dimensao %>
+    <%= f.number_field :qtd_dimensao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monetaria %>
+    <%= f.check_box :monetaria %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

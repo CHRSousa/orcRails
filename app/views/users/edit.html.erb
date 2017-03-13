@@ -1,0 +1,6 @@
+<h1><%= @user.name %> Configurações</h1>
+<%= render 'form' %>
+<ul>
+   <li><%= link_to "Editar", edit_user_path(current_user) %></li>
+   <li><%= link_to "Apagar", @user, method: :delete%></li>
+</ul>  

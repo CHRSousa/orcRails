@@ -1,0 +1,9 @@
+# postgresql
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: orc
+  pool: 5
+  username: postgres
+  password: caique01
+  host: localhost

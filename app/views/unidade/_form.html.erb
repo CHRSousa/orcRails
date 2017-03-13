@@ -1,0 +1,23 @@
+<%= form_for(@unidade, :url => { :action => "create"}) do |u| %>
+	<%= u.label :codigo %>
+	<%= u.text_field :codigo %>
+	<br>
+	
+	<%= u.label :descricao %>
+	<%= u.text_field :descricao %>
+	<br>
+
+	<%= u.label :qtd_dimensao %>
+	<%= u.text_field :qtd_dimensao %>
+	<br>
+
+	<%= u.label :monetaria %>
+	<%= u.text_field :monetaria %>
+	<br><br>
+
+	<%= u.submit%>
+
+	<br>
+
+	<%= link_to("Voltar para a lista", :controller => "unidade", :action => "index")%>
+<% end %>
