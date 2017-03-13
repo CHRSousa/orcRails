@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item: MyString
+  descricao: MyString
+  unidade: one
+  tipo_servico: one
+
+two:
+  item: MyString
+  descricao: MyString
+  unidade: two
+  tipo_servico: two

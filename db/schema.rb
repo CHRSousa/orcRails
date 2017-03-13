@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313020620) do
+ActiveRecord::Schema.define(version: 20170313132952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20170313020620) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["unidade_id"], name: "index_insumos_on_unidade_id", using: :btree
+  end
+
+  create_table "servicos", force: :cascade do |t|
+    t.string   "item"
+    t.string   "descricao"
+    t.integer  "unidade_id"
+    t.integer  "tipo_servico_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "codigo_seinfra"
+    t.index ["tipo_servico_id"], name: "index_servicos_on_tipo_servico_id", using: :btree
+    t.index ["unidade_id"], name: "index_servicos_on_unidade_id", using: :btree
   end
 
   create_table "tipo_servicos", force: :cascade do |t|
@@ -50,4 +62,6 @@ ActiveRecord::Schema.define(version: 20170313020620) do
   end
 
   add_foreign_key "insumos", "unidades"
+  add_foreign_key "servicos", "tipo_servicos"
+  add_foreign_key "servicos", "unidades"
 end
