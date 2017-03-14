@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313132952) do
+ActiveRecord::Schema.define(version: 20170314132504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20170313132952) do
     t.string   "descricao"
     t.string   "codigo_seinfra"
     t.integer  "unidade_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "tipo",           default: 0
     t.index ["unidade_id"], name: "index_insumos_on_unidade_id", using: :btree
   end
 

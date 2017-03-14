@@ -1,40 +1,41 @@
 <header>
     <div>
       <nav>
-        <ul>
+        <ul class="menu">
           <% if logged_in? %>
-            <li><%= link_to "Usuários", users_path %></li>
-            <li>
-              <ul>
-                <li><%= link_to "Perfil", current_user %></li>
-                <li><%= link_to "Configurações", edit_user_path(current_user) %></li>
-                <li>
+            <li><a href="#">Minha Conta</a><ul>
+              <li><%= link_to "Usuários", users_path %></li>
+              <li><%= link_to "Perfil", current_user %></li>
+              <li><%= link_to "Configurações", edit_user_path(current_user) %></li>
+              <li>
                   <%= link_to "Sair", sign_out_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
+              </li>
+             </ul></li>
 
             <!-- Tabelas base-->
-            <li>Tabelas de Apoio</li>
-            <li>
-              <ul>
-                <li>
+            <li><a href="#">Tabelas de Apoio</a><ul>
+              <li>
                   <%= link_to "Unidades", unidades_path %>
-                </li>
-                <li><%= link_to "TipoServicos", tipo_servicos_path %>
-                </li>
-                <li>
-                  <%= link_to "Servicos", servicos_path %>
-                </li>
-                <li>
-                  <%= link_to "Insumos", insumos_path %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Entrar", root_path %></li>
+              </li>
+              
+              <li><%= link_to "TipoServicos", tipo_servicos_path %>
+              </li>
+              
+              <li>
+                <%= link_to "Servicos", servicos_path %>
+              </li>
+              
+              <li>
+                <%= link_to "Insumos", insumos_path %>
+              </li>
+            </ul></li>
+
+            <!-- Orçamentos -->
+            <li><a href="#">Orçamentos</a><ul>
+            </ul></li>
           <% end %>
         </ul>
       </nav>
+
     </div>
   </header>

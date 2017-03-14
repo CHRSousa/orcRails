@@ -26,6 +26,11 @@
     <%= f.select :unidade_id, options_for_select(Unidade.all.map{|u|[u.sigla, u.id]}, f.object.unidade_id) %>
   </div>
 
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.select :tipo, Insumo.tipos.keys %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

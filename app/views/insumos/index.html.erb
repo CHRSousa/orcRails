@@ -9,6 +9,7 @@
       <th>Descricao</th>
       <th>Codigo seinfra</th>
       <th>Unidade</th>
+      <th>Tipo de Insumo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= insumo.descricao %></td>
         <td><%= insumo.codigo_seinfra %></td>
         <td><%= insumo.unidade.sigla %></td>
+        <td><%= insumo.tipo %></td>
         <td><%= link_to 'Show', insumo %></td>
         <td><%= link_to 'Edit', edit_insumo_path(insumo) %></td>
         <td><%= link_to 'Destroy', insumo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
