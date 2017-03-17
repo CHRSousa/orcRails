@@ -36,6 +36,16 @@
     <%= f.select :tipo_servico_id, options_for_select(TipoServico.all.map{|t|[t.descricao, t.id]}, f.object.tipo_servico_id) %>
   </div>
 
+  <div class="field">
+    <%= f.label :vl_unidade %>
+    <%= f.text_field :vl_unidade %>
+  </div>
+
+  <div class="field">
+    <%= f.label :especificacao %> <br>
+    <%= f.text_area :especificacao, :cols => 80, :rows => 15, placeholder: "Defina aqui a especificação desse serviço..." %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

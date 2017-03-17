@@ -4,4 +4,6 @@ class Insumo < ApplicationRecord
   	'Material': 0, 
   	'Mão de Obra': 1,
   }
+  has_many :composicao
+  has_many :servico, through: :composicao
 end

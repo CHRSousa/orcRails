@@ -5,7 +5,7 @@ class TipoServicosController < ApplicationController
   # GET /tipo_servicos
   # GET /tipo_servicos.json
   def index
-    @tipo_servicos = TipoServico.order(:item)
+    @tipo_servicos = TipoServico.order(:item).page(params[:page]).per(25)
   end
 
   # GET /tipo_servicos/1

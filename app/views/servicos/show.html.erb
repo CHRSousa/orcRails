@@ -1,3 +1,4 @@
+<h1>Serviço - Detalhe</h1>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -25,5 +26,15 @@
   <%= @servico.tipo_servico.descricao %>
 </p>
 
-<%= link_to 'Edit', edit_servico_path(@servico) %> |
-<%= link_to 'Back', servicos_path %>
+<p>
+  <strong>Valor Unitário:</strong>
+  <%= @servico.vl_unidade %>
+</p>
+
+<p>
+  <strong>Especificação:</strong><br>
+  <%= @servico.especificacao %>
+</p>
+
+<%= link_to 'Alterar', edit_servico_path(@servico) %> |
+<%= link_to 'Voltar', servicos_path %>

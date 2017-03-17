@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Composições</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lista de Composições</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  	<% @servicos.each do |s| %>
+    <tr>
+      <td><b><%= s.codigo_seinfra %> - <%= s.descricao %> - <%= s.unidade.sigla %></b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      	<table>
+      		<tr><td><b>Mão de Obra</b></td></tr>
+      		<% @composicaos.each do |c| %>
+      			<% if c.servico.codigo_seinfra == s.codigo_seinfra && c.insumo.tipo == 'Mão de Obra'  %>
+      				<tr><td>&nbsp;&nbsp;&nbsp;<%= c.insumo.codigo_seinfra %>   <%= c.insumo.descricao %>    </td></tr>
+      			<% end %>
+      		<% end %>
+      		<tr><td><b> </b></td></tr>
+      		<tr><td><b>Material: </b></td></tr>
+      		<% @composicaos.each do |c| %>
+      			<% if c.servico.codigo_seinfra == s.codigo_seinfra && c.insumo.tipo == 'Material'  %>
+      				<tr><td>&nbsp;&nbsp;&nbsp;<%= c.insumo.codigo_seinfra %>   <%= c.insumo.descricao %>    </td></tr>
+      			<% end %>
+      		<% end %>
+      	</table>
+      </td>
+    <tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Composição', new_composicao_path %>
+

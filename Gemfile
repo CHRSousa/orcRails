@@ -49,3 +49,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'ancestry', '~> 2.1'
+
+#habilitando paginação
+gem 'kaminari'
+
+gem 'jquery-rails'
+
+#habilitando filtros
+gem 'filterrific'

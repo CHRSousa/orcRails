@@ -1,0 +1,33 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info servicos %>
+  </div>
+
+  <table>
+    <tr>
+      <th align="left">Item</th>
+      <th align="left">Descricao</th>
+      <th align="left">Codigo seinfra</th>
+      <th align="left">Unidade</th>
+      <th align="left">Tipo servico</th>
+      <th align="left">Valor Unitário</th>
+      <th colspan="3"></th>
+    </tr>
+    <% @servicos.each do |servico| %>
+      <tr>
+        <td><%= servico.item %></td>
+        <td><%= servico.descricao %></td>
+        <td><%= servico.codigo_seinfra %></td>
+        <td><%= servico.unidade.sigla %></td>
+        <td><%= servico.tipo_servico.descricao %></td>
+        <td><%= servico.vl_unidade %></td>
+        <td><%= link_to 'Ver', servico %></td>
+        <td><%= link_to 'Alterar', edit_servico_path(servico) %></td>
+        <td><%= link_to 'Apagar', servico, method: :delete, data: { confirm: 'Tem certeza que quer apagar esse serviço?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= paginate @servicos %>

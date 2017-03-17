@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314132504) do
+ActiveRecord::Schema.define(version: 20170316130212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "composicaos", force: :cascade do |t|
+    t.float    "coeficiente"
+    t.integer  "insumo_id"
+    t.integer  "servico_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["insumo_id"], name: "index_composicaos_on_insumo_id", using: :btree
+    t.index ["servico_id"], name: "index_composicaos_on_servico_id", using: :btree
+  end
 
   create_table "insumos", force: :cascade do |t|
     t.string   "descricao"
@@ -33,6 +43,8 @@ ActiveRecord::Schema.define(version: 20170314132504) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "codigo_seinfra"
+    t.text     "especificacao"
+    t.float    "vl_unidade"
     t.index ["tipo_servico_id"], name: "index_servicos_on_tipo_servico_id", using: :btree
     t.index ["unidade_id"], name: "index_servicos_on_unidade_id", using: :btree
   end
@@ -62,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170314132504) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "composicaos", "insumos"
+  add_foreign_key "composicaos", "servicos"
   add_foreign_key "insumos", "unidades"
   add_foreign_key "servicos", "tipo_servicos"
   add_foreign_key "servicos", "unidades"

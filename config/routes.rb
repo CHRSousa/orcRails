@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :servicos
   get 'sessions/new'
 
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   resources :tipo_servicos
   resources :unidades
   resources :insumos
+  resources :composicaos
+  resources :servicos
   resources :users
 
   get    'sign_in'   => 'sessions#new'

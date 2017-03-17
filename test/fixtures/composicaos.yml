@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coeficiente: 1.5
+  insumo: one
+  servico: one
+
+two:
+  coeficiente: 1.5
+  insumo: two
+  servico: two

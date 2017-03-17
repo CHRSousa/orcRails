@@ -1,10 +1,31 @@
 class ServicosController < ApplicationController
+  before_action :authorize
   before_action :set_servico, only: [:show, :edit, :update, :destroy]
 
   # GET /servicos
   # GET /servicos.json
   def index
-    @servicos = Servico.all
+    @unidade    = Unidade.all
+    @tipo_servicos = TipoServico.all
+
+    @filterrific = initialize_filterrific(
+      Servico,
+      params[:filterrific]
+    ) or return
+
+    @filterrific.select_options = {
+      sorted_by: Servico.options_for_sorted_by,
+      with_tipo_servico_id: TipoServico.options_for_select,
+      with_unidade_id: Unidade.options_for_select
+    }
+    
+    @servicos = @filterrific.find.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /servicos/1
@@ -28,7 +49,7 @@ class ServicosController < ApplicationController
 
     respond_to do |format|
       if @servico.save
-        format.html { redirect_to @servico, notice: 'Servico was successfully created.' }
+        format.html { redirect_to @servico, notice: 'Servico criado com sucesso!' }
         format.json { render :show, status: :created, location: @servico }
       else
         format.html { render :new }
@@ -42,7 +63,7 @@ class ServicosController < ApplicationController
   def update
     respond_to do |format|
       if @servico.update(servico_params)
-        format.html { redirect_to @servico, notice: 'Servico was successfully updated.' }
+        format.html { redirect_to @servico, notice: 'Serviço foi atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @servico }
       else
         format.html { render :edit }
@@ -56,7 +77,7 @@ class ServicosController < ApplicationController
   def destroy
     @servico.destroy
     respond_to do |format|
-      format.html { redirect_to servicos_url, notice: 'Servico was successfully destroyed.' }
+      format.html { redirect_to servicos_url, notice: 'Servico removido com sucesso!' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +90,6 @@ class ServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def servico_params
-      params.require(:servico).permit(:item, :descricao, :codigo_seinfra, :unidade_id, :tipo_servico_id)
+      params.require(:servico).permit(:item, :descricao, :codigo_seinfra, :unidade_id, :tipo_servico_id, :especificacao, :vl_unidade)
     end
 end

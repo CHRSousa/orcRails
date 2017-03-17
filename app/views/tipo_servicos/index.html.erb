@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tipo Servicos</h1>
+<h1>Tipo Servicos <%= link_to '+', new_tipo_servico_path %></h1>
 
-<table>
+<table border="1">
   <thead>
     <tr>
-      <th>Codigo</th>
-      <th>Item</th>
-      <th>Descricao</th>
-      <th>Pai</th>
+      <th align="left">Codigo</th>
+      <th align="left">Item</th>
+      <th align="left">Descricao</th>
+      <th align="left">Pai</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,22 +16,25 @@
   <tbody>
     <% @tipo_servicos.each do |tipo_servico| %>
       <tr>
-        <td><%= tipo_servico.id %></td>
-        <td><%= tipo_servico.item %></td>
-        <td><%= tipo_servico.descricao %></td>
-        <td>
-          <% if tipo_servico.father != nil %>
-            <%= tipo_servico.father.descricao %>
-          <%end%>    
-        </td>
-        <td><%= link_to 'Show', tipo_servico %></td>
-        <td><%= link_to 'Edit', edit_tipo_servico_path(tipo_servico) %></td>
-        <td><%= link_to 'Destroy', tipo_servico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if tipo_servico.father != nil %>
+          <td><%= tipo_servico.id %></td>
+          <td><%= tipo_servico.item %></td>
+          <td><%= tipo_servico.descricao %></td>
+          <td><%= tipo_servico.father.descricao %></td>
+        <%else%>    
+          <td><b><%= tipo_servico.id %></b></td>
+          <td><b><%= tipo_servico.item %></b></td>
+          <td><b><%= tipo_servico.descricao %></b></td>
+          <td></td>
+        <%end%>    
+        
+        <td><%= link_to 'Ver', tipo_servico %></td>
+        <td><%= link_to 'Atualizar', edit_tipo_servico_path(tipo_servico) %></td>
+        <td><%= link_to 'Apagar', tipo_servico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+      <tr><td colspan="7"><%= paginate @tipo_servicos %></td></tr>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Tipo Servico', new_tipo_servico_path %>
