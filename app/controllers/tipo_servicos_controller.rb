@@ -5,7 +5,23 @@ class TipoServicosController < ApplicationController
   # GET /tipo_servicos
   # GET /tipo_servicos.json
   def index
-    @tipo_servicos = TipoServico.order(:item).page(params[:page]).per(25)
+
+    @filterrific = initialize_filterrific(
+      TipoServico,
+      params[:filterrific]
+    ) or return
+
+    @filterrific.select_options = {
+      sorted_by: TipoServico.options_for_sorted_by,
+      with_father_id: TipoServico.options_for_select
+    }
+    
+    @tipo_servicos = @filterrific.find.page(params[:page]).per(20)
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /tipo_servicos/1

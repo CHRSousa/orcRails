@@ -1,5 +1,8 @@
 <%# app/views/students/index.html.erb %>
-<h1>Serviços</h1>
+<h1>Serviços <%= link_to '+', new_servico_path %></h1>
+
+<br>
+<table border="1"><tr><td>
 
 <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
   <div>
@@ -40,6 +43,8 @@
   <%# add an automated spinner to your form when the list is refreshed %>
   
 <% end %>
+</td></tr></table>
+<br><br>
 
 <%= render(
   partial: 'servicos/list',

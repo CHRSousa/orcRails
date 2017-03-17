@@ -1,35 +1,33 @@
-<p id="notice"><%= notice %></p>
+<h1>Unidades <%= link_to '+', new_unidade_path %></h1>
 
-<h1>Unidades</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Codigo</th>
-      <th>Descricao</th>
-      <th>Sigla</th>
-      <th>Qtd dimensao</th>
-      <th>Monetaria</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @unidades.each do |unidade| %>
-      <tr>
-        <td><%= unidade.id %></td>
-        <td><%= unidade.descricao %></td>
-        <td><%= unidade.sigla %></td>
-        <td><%= unidade.qtd_dimensao %></td>
-        <td><%= unidade.monetaria %></td>
-        <td><%= link_to 'Show', unidade %></td>
-        <td><%= link_to 'Edit', edit_unidade_path(unidade) %></td>
-        <td><%= link_to 'Destroy', unidade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
 
 <br>
+<table border="1"><tr><td>
+  <div>
+    Pesquisa
+    <%= f.text_field(:search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
 
-<%= link_to 'New Unidade', new_unidade_path %>
+  <div>
+    Ordenado por
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+  </div>
+
+  <div>
+    <%= link_to(
+      'Limpar Filtros',
+      reset_filterrific_url,
+    ) %> &nbsp; <%= f.submit 'Filtrar' %>
+  </div>
+
+  <% end %>
+  </td></tr></table>
+  <br><br>
+
+  <%= render(
+  partial: 'unidades/list',
+  locals: { unidades: @unidades }
+) %>

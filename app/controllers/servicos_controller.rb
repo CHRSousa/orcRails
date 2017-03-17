@@ -19,7 +19,7 @@ class ServicosController < ApplicationController
       with_unidade_id: Unidade.options_for_select
     }
     
-    @servicos = @filterrific.find.page(params[:page])
+    @servicos = @filterrific.find.page(params[:page]).per(20)
     
     respond_to do |format|
       format.html

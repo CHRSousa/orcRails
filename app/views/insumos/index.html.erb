@@ -1,35 +1,55 @@
-<p id="notice"><%= notice %></p>
+<h1>Insumos <%= link_to '+', new_insumo_path %></h1>
 
-<h1>Insumos</h1>
+<br>
+<table border="1"><tr><td>
 
-<table>
-  <thead>
-    <tr>
-      <th>Codigo</th>
-      <th>Descricao</th>
-      <th>Codigo seinfra</th>
-      <th>Unidade</th>
-      <th>Tipo de Insumo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+  <div>
+    Pesquisa
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+  <div>
+    Tipo
+    <%= f.select(
+      :with_tipo,
+      @filterrific.select_options[:with_tipo],
+      { include_blank: '- Todos -' }
+    ) %>
+  </div>
 
-  <tbody>
-    <% @insumos.each do |insumo| %>
-      <tr>
-        <td><%= insumo.id %></td>
-        <td><%= insumo.descricao %></td>
-        <td><%= insumo.codigo_seinfra %></td>
-        <td><%= insumo.unidade.sigla %></td>
-        <td><%= insumo.tipo %></td>
-        <td><%= link_to 'Show', insumo %></td>
-        <td><%= link_to 'Edit', edit_insumo_path(insumo) %></td>
-        <td><%= link_to 'Destroy', insumo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div>
+    Unidade
+    <%= f.select(
+      :with_unidade_id, 
+      @filterrific.select_options[:with_unidade_id], 
+      { include_blank: '- Todos -'})
+    %>
+  </div>
+  <div>
+    Ordenado por
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+  </div>
+  <div>
+    <%= link_to(
+      'Limpar Filtros',
+      reset_filterrific_url,
+    ) %> &nbsp; <%= f.submit 'Filtrar' %>
+  </div>
+  
+<% end %>
+</td></tr></table>
+<br><br>
+
+<%= render(
+  partial: 'insumos/list',
+  locals: { insumos: @insumos }
+) %>
+
+
 
 <br>
 
-<%= link_to 'New Insumo', new_insumo_path %>
+

@@ -6,6 +6,22 @@ class UnidadesController < ApplicationController
   # GET /unidades.json
   def index
     @unidades = Unidade.all
+
+    @filterrific = initialize_filterrific(
+      Unidade,
+      params[:filterrific]
+    ) or return
+
+    @filterrific.select_options = {
+      sorted_by: Unidade.options_for_sorted_by
+    }
+
+    @unidades = @filterrific.find.page(params[:page]).per(20)
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /unidades/1

@@ -6,6 +6,25 @@ class InsumosController < ApplicationController
   # GET /insumos.json
   def index
     @insumos = Insumo.all
+    @unidade    = Unidade.all
+    
+    @filterrific = initialize_filterrific(
+      Insumo,
+      params[:filterrific]
+    ) or return
+
+    @filterrific.select_options = {
+      sorted_by: Insumo.options_for_sorted_by,
+      with_tipo: Insumo.options_for_select,
+      with_unidade_id: Unidade.options_for_select
+    }
+    
+    @insumos = @filterrific.find.page(params[:page]).per(20)
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /insumos/1

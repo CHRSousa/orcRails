@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      insumo:
+        tipos:
+          'Material': "Material"
+          'Mão de Obra': "Mão de Obra"
