@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  obra: 
+  nome_proprietario: MyString
+  cpf_proprietario: MyString
+  bdi: 1.5
+
+two:
+  obra: 
+  nome_proprietario: MyString
+  cpf_proprietario: MyString
+  bdi: 1.5

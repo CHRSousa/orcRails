@@ -1,0 +1,33 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info obras %>
+  </div>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descricao</th>
+      <th>Local</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @obras.each do |obra| %>
+      <tr>
+        <td><%= obra.id %></td>
+        <td><%= obra.descricao %></td>
+        <td><%= obra.local %></td>
+        <td><%= link_to 'Ver', obra %></td>
+        <td><%= link_to 'Atualizar', edit_obra_path(obra) %></td>
+        <td><%= link_to 'Apagar', obra, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+<%= paginate @obras %>

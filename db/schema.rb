@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316130212) do
+ActiveRecord::Schema.define(version: 20170318032100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,34 @@ ActiveRecord::Schema.define(version: 20170316130212) do
     t.datetime "updated_at",                 null: false
     t.integer  "tipo",           default: 0
     t.index ["unidade_id"], name: "index_insumos_on_unidade_id", using: :btree
+  end
+
+  create_table "linhas", force: :cascade do |t|
+    t.integer  "orcamento_id"
+    t.integer  "servico_id"
+    t.integer  "quantidade"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["orcamento_id"], name: "index_linhas_on_orcamento_id", using: :btree
+    t.index ["servico_id"], name: "index_linhas_on_servico_id", using: :btree
+  end
+
+  create_table "obras", force: :cascade do |t|
+    t.string   "descricao"
+    t.string   "local"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orcamentos", force: :cascade do |t|
+    t.integer  "obra_id"
+    t.string   "nome_proprietario"
+    t.string   "cpf_proprietario"
+    t.float    "bdi"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.date     "data"
+    t.index ["obra_id"], name: "index_orcamentos_on_obra_id", using: :btree
   end
 
   create_table "servicos", force: :cascade do |t|
@@ -77,6 +105,9 @@ ActiveRecord::Schema.define(version: 20170316130212) do
   add_foreign_key "composicaos", "insumos"
   add_foreign_key "composicaos", "servicos"
   add_foreign_key "insumos", "unidades"
+  add_foreign_key "linhas", "orcamentos"
+  add_foreign_key "linhas", "servicos"
+  add_foreign_key "orcamentos", "obras"
   add_foreign_key "servicos", "tipo_servicos"
   add_foreign_key "servicos", "unidades"
 end

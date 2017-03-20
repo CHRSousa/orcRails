@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @obra.descricao %>
+</p>
+
+<p>
+  <strong>Local:</strong>
+  <%= @obra.local %>
+</p>
+
+<%= link_to 'Edit', edit_obra_path(@obra) %> |
+<%= link_to 'Back', obras_path %>

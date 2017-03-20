@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orcamento: one
+  servico: one
+  quantidade: 1
+
+two:
+  orcamento: two
+  servico: two
+  quantidade: 1

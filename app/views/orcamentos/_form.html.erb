@@ -1,0 +1,53 @@
+
+<%= form_for(orcamento) do |f| %>
+
+<% if orcamento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(servico.errors.count, "error") %> prohibited this orcamento from being saved:</h2>
+
+      <ul>
+      <% orcamento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_proprietario %>
+    <%= f.text_field :nome_proprietario %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cpf_proprietario %>
+    <%= f.text_field :cpf_proprietario %>
+  </div>
+
+  <div class="field">
+    <%= f.label :obra %>
+    <%= f.select :obra_id, options_for_select(Obra.all.map{|u|[u.descricao, u.id]}, f.object.obra_id) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bdi %>
+    <%= f.text_field :bdi %>
+  </div>
+
+  <div class="field"><ul>
+    <%= f.fields_for :linhas do |linhas_form| %>
+      <li>
+
+
+
+        <div class="field">
+          <%= linhas_form.label :quantidade %>
+          <%= linhas_form.text_field :quantidade %>
+        </div>
+      </li>
+    <% end %>
+  </div></ul>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

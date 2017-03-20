@@ -1,5 +1,5 @@
-class Unidade < ActiveRecord::Base
-  	filterrific(
+class Obra < ActiveRecord::Base
+	filterrific(
  		default_filter_params: { sorted_by: 'descricao_desc' },
   		available_filters: [
   			:sorted_by,
@@ -15,9 +15,9 @@ class Unidade < ActiveRecord::Base
 	  direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
 	  case sort_option.to_s
 	  when /^descricao/
-	    order("LOWER(unidades.descricao) #{ direction }")
-    when /^sigla/
-      order("LOWER(unidades.sigla) #{ direction }")
+	    order("LOWER(obras.descricao) #{ direction }")
+    when /^local/
+      order("LOWER(obras.local) #{ direction }")
 	  else
 	    raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
 	  end
@@ -25,14 +25,14 @@ class Unidade < ActiveRecord::Base
 
   	def self.options_for_sorted_by 
   		[
-      		['Descrição (a-z)', 'descricao_asc'],
+      	  ['Descrição (a-z)', 'descricao_asc'],
           ['Descrição (z-a)', 'descricao_desc'],
-          ['Sigla (a-z)', 'sigla_asc'],
-          ['Sigla (z-a)', 'sigla_desc']
+          ['Local (a-z)', 'local_asc'],
+          ['Local (z-a)', 'local_desc']
     	]
   	end
 	
 	def self.options_for_select
-  		order('LOWER(sigla)').map { |e| [e.sigla, e.id] }
+  		order('LOWER(descricao)').map { |o| [o.descricao, o.id] }
   end
 end

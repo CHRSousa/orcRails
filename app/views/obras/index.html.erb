@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-<h1>Unidades <%= link_to '+', new_unidade_path %></h1>
+
+<h1>Obras <%= link_to '+', new_obra_path %></h1>
 
 <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
 
@@ -29,6 +30,6 @@
   <br><br>
 
   <%= render(
-  partial: 'unidades/list',
-  locals: { unidades: @unidades }
+  partial: 'obras/list',
+  locals: { obras: @obras }
 ) %>
