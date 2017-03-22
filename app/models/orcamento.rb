@@ -1,6 +1,9 @@
 class Orcamento < ApplicationRecord
 	has_many :linhas
-	accepts_nested_attributes_for :linhas
+	accepts_nested_attributes_for :linhas, 
+	                              :allow_destroy => true, 
+	                              reject_if: lambda { |attributes| attributes[:quantidade].blank? }
+
 
 	filterrific(
   		default_filter_params: { sorted_by: 'data_desc' },

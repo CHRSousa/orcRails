@@ -53,7 +53,14 @@ gem 'ancestry', '~> 2.1'
 #habilitando paginação
 gem 'kaminari'
 
-gem 'jquery-rails'
-
 #habilitando filtros
 gem 'filterrific'
+
+#habilitando formulario aninhado
+gem 'simple_form'
+gem 'dotenv-rails', '~> 2.1', '>= 2.1.2'
+gem 'cocoon', '~> 1.2', '>= 1.2.9'
+gem "twitter-bootstrap-rails"
+
+
+

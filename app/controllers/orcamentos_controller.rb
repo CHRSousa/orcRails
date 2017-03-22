@@ -33,8 +33,13 @@ class OrcamentosController < ApplicationController
   # GET /orcamentos/new
   def new
     @orcamento = Orcamento.new
-    @linhas
-    2.times { @orcamento.linhas.build}
+    @linha = @orcamento.linhas.build
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @orcamento }
+      format.js
+    end
   end
 
   # GET /orcamentos/1/edit
@@ -82,11 +87,6 @@ class OrcamentosController < ApplicationController
     end
   end
 
-
-  def linhas
-    @linhas = @orcamento.linhas
-  end
-
   private
 
   def set_orcamento
@@ -96,8 +96,12 @@ class OrcamentosController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def orcamento_params
     params.require(:orcamento).permit(:quantidade, 
-    	:obra_id, :nome_proprietario, :cpf_proprietario, 
-    	:bdi, :data, :linhas_attributes => [:id, :quantidade, :servico_id]
-      )
+    	                                :obra_id, 
+                                      :nome_proprietario, 
+                                      :cpf_proprietario, 
+    	                                :bdi, 
+                                      :data, 
+                                      linhas_attributes: [:id, :quantidade, :servico_id, :_destroy]
+                                    )
   end
 end

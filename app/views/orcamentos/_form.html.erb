@@ -1,5 +1,5 @@
 
-<%= form_for(orcamento) do |f| %>
+<%= form_for(@orcamento) do |f| %>
 
 <% if orcamento.errors.any? %>
     <div id="error_explanation">
@@ -13,39 +13,36 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-inputs">
     <%= f.label :nome_proprietario %>
     <%= f.text_field :nome_proprietario %>
   </div>
 
-  <div class="field">
+  <div class="form-inputs">
     <%= f.label :cpf_proprietario %>
     <%= f.text_field :cpf_proprietario %>
   </div>
 
-  <div class="field">
+  <div class="form-inputs">
     <%= f.label :obra %>
     <%= f.select :obra_id, options_for_select(Obra.all.map{|u|[u.descricao, u.id]}, f.object.obra_id) %>
   </div>
 
-  <div class="field">
+  <div class="form-inputs">
     <%= f.label :bdi %>
     <%= f.text_field :bdi %>
   </div>
 
-  <div class="field"><ul>
-    <%= f.fields_for :linhas do |linhas_form| %>
-      <li>
-
-
-
-        <div class="field">
-          <%= linhas_form.label :quantidade %>
-          <%= linhas_form.text_field :quantidade %>
-        </div>
-      </li>
+  <h3>Serviços</h3>
+  <div id="linhas">
+    <%= f.fields_for :linhas do |linha_form| %>
+      <%= render 'linha_fields', f: linha_form %>
     <% end %>
-  </div></ul>
+  </div>
+
+  <div class="form-actions">    
+    <%= link_to_add_association 'Adicionar Serviço', f, :linhas %><br>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

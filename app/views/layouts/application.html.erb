@@ -3,16 +3,15 @@
   <head>
     <title>Orc</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'default', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'default', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'default', 'data-turbolinks-track' => 'reload' %>
 
     <!-- Arquivo css externo -->
     <link rel="stylesheet" type="text/css"  href="http://arquivo.devmedia.com.br/artigos/LinhaDeCodigo/RicardoArrigoni/MenuEmCSSdropdown/estilo.css" />
  </head>
 
-  <body>
-  	<%= render 'layouts/header' %>
+  <body height=100%>
+    <%= render 'layouts/header' %>
       <br><br>
       <p></p>
     <%= yield %>
