@@ -62,5 +62,6 @@ gem 'dotenv-rails', '~> 2.1', '>= 2.1.2'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
 gem "twitter-bootstrap-rails"
 
+gem 'sprockets'
 
 

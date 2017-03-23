@@ -1,8 +1,9 @@
-<div class="form-group nested-fields">
-  	<%= f.label :quantidade %>
-  	<%= f.text_field :quantidade %>
-   	<%= f.hidden_field :id %>
-    <%= f.hidden_field :_destroy %>
-    <%= link_to_remove_association "ApagarServico", f %>
-    <br>
-</div>
+	<div class="form-group nested-fields" border = "1">
+	  	<%= f.label :quantidade %>
+	  	<%= f.text_field :quantidade %>
+	  	<%= f.label :servico %>
+	  	<%= f.collection_select :servico_id, Servico.all, :id, :descricao %>
+	    <%= link_to_remove_association "Apagar Servico", f,{ class: 'panel-heading-icon',  data: { confirm: 'Tem certeza que quer remover esse serviço?' }}
+	     %>
+	    <br>
+	</div>

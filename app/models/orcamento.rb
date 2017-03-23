@@ -1,4 +1,5 @@
 class Orcamento < ApplicationRecord
+	belongs_to :obra
 	has_many :linhas
 	accepts_nested_attributes_for :linhas, 
 	                              :allow_destroy => true, 
@@ -16,7 +17,7 @@ class Orcamento < ApplicationRecord
 	)
   
 	scope :search_query, lambda { |query|
-	  	where("nome_proprietario LIKE ?", "%#{query}%")  
+	  	where("nome_proprietario LIKE ? OR cpf_proprietario LIKE ?", "%#{query}%")  
 	}
 
 	scope :with_obra_id, lambda { |obra_ids|
@@ -31,7 +32,7 @@ class Orcamento < ApplicationRecord
 		  when /^obra/
 		    order("LOWER(orcamentos.obra) #{ direction }")
 		  when /^data/
-		    order("LOWER(orcamentos.data) #{ direction }")
+		    order("orcamentos.data #{ direction }")
 		  else
 		    raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
 		  end

@@ -3,14 +3,14 @@
   <head>
     <title>Orc</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag 'default', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'default', 'data-turbolinks-track' => 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
     <!-- Arquivo css externo -->
-    <link rel="stylesheet" type="text/css"  href="http://arquivo.devmedia.com.br/artigos/LinhaDeCodigo/RicardoArrigoni/MenuEmCSSdropdown/estilo.css" />
+    <%= stylesheet_link_tag    'menu', media: 'all', 'data-turbolinks-track' => true %>
  </head>
 
-  <body height=100%>
+  <body>
     <%= render 'layouts/header' %>
       <br><br>
       <p></p>

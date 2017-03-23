@@ -1,11 +1,12 @@
 class OrcamentosController < ApplicationController
 	before_action :authorize
 	before_action :set_orcamento, only: [:show, :edit, :update, :destroy, :linhas]
-
+  
 	def index
     	@orcamentos = Orcamento.all
-    	@linhas     = Linha.all
-    	@obras 		= Obra.all
+    	#@linhas     = Linha.all
+    	@obras 		  = Obra.all
+      @servicos   = Servico.all
     
 	    @filterrific = initialize_filterrific(
 	      Orcamento,
@@ -14,7 +15,8 @@ class OrcamentosController < ApplicationController
 
 	    @filterrific.select_options = {
 	      sorted_by: Orcamento.options_for_sorted_by,
-	      with_obra_id: Obra.options_for_select
+	      with_obra_id: Obra.options_for_select,
+        with_servico_id: Servico.options_for_select
 	    }
 	    
 	    @orcamentos = @filterrific.find.page(params[:page]).per(20)
@@ -38,7 +40,7 @@ class OrcamentosController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @orcamento }
-      format.js
+      #format.js
     end
   end
 
@@ -68,7 +70,7 @@ class OrcamentosController < ApplicationController
   def update
     respond_to do |format|
       if @orcamento.update(orcamento_params)
-        format.html { redirect_to @orcamento, notice: 'Orcamento atualizado com sucesso!' }
+        format.html { redirect_to @orcamento, notice: 'Orçamento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @orcamento }
       else
         format.html { render :edit }
@@ -82,7 +84,7 @@ class OrcamentosController < ApplicationController
   def destroy
     @orcamento.destroy
     respond_to do |format|
-      format.html { redirect_to orcamentos_url, notice: 'Orcamento apagado com sucesso!' }
+      format.html { redirect_to orcamentos_url, notice: 'Orçamento apagado com sucesso!' }
       format.json { head :no_content }
     end
   end
@@ -95,13 +97,12 @@ class OrcamentosController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def orcamento_params
-    params.require(:orcamento).permit(:quantidade, 
-    	                                :obra_id, 
+    params.require(:orcamento).permit(:obra_id, 
                                       :nome_proprietario, 
                                       :cpf_proprietario, 
-    	                                :bdi, 
+    	                                :bdi,
                                       :data, 
-                                      linhas_attributes: [:id, :quantidade, :servico_id, :_destroy]
+                                      linhas_attributes: [:id, :quantidade, :servico_id]
                                     )
   end
 end

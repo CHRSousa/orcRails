@@ -1,7 +1,7 @@
 
-<%= form_for(@orcamento) do |f| %>
+<%= form_for(@orcamento, html: { multipart: true }) do |f| %>
 
-<% if orcamento.errors.any? %>
+  <% if orcamento.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(servico.errors.count, "error") %> prohibited this orcamento from being saved:</h2>
 
@@ -12,39 +12,51 @@
       </ul>
     </div>
   <% end %>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :nome_proprietario %>
+        <%= f.text_field :nome_proprietario %>
+      </div>
 
-  <div class="form-inputs">
-    <%= f.label :nome_proprietario %>
-    <%= f.text_field :nome_proprietario %>
+      <div class="form-group">
+        <%= f.label :cpf_proprietario %>
+        <%= f.text_field :cpf_proprietario %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :obra %>
+        <%= f.select :obra_id, options_for_select(Obra.all.map{|u|[u.descricao, u.id]}, f.object.obra_id) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :bdi %>
+        <%= f.text_field :bdi %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :data %>
+        <%= f.date_field :data %>
+      </div>
+    </div>
   </div>
 
-  <div class="form-inputs">
-    <%= f.label :cpf_proprietario %>
-    <%= f.text_field :cpf_proprietario %>
-  </div>
 
-  <div class="form-inputs">
-    <%= f.label :obra %>
-    <%= f.select :obra_id, options_for_select(Obra.all.map{|u|[u.descricao, u.id]}, f.object.obra_id) %>
-  </div>
+  <div class="col-md-12">
+    <h3>Serviços</h3>
+    <div id="linhas">
+      <%= f.fields_for :linhas do |linha_form| %>
+        <%= render 'linha_fields', f: linha_form %>
+      <% end %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.label :bdi %>
-    <%= f.text_field :bdi %>
-  </div>
+    <div>    
+      <%= link_to_add_association 'Adicionar Serviço', f, :linhas %><br>
+    </div>
 
-  <h3>Serviços</h3>
-  <div id="linhas">
-    <%= f.fields_for :linhas do |linha_form| %>
-      <%= render 'linha_fields', f: linha_form %>
-    <% end %>
-  </div>
-
-  <div class="form-actions">    
-    <%= link_to_add_association 'Adicionar Serviço', f, :linhas %><br>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+    <div class="form-group">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>

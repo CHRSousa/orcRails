@@ -1,2 +1,39 @@
 <h1>Orçamento - Detalhe</h1>
 <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome do Proprietário:</strong>
+  <%= @orcamento.nome_proprietario %>
+</p>
+
+<p>
+  <strong>CPF do Proprietário:</strong>
+  <%= @orcamento.cpf_proprietario %>
+</p>
+
+<p>
+  <strong>Obra:</strong>
+  <%= @orcamento.obra.descricao %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @orcamento.data %>
+</p>
+
+<table>
+	<tr>
+		<th align="left"><strong>Serviço</strong></th>
+		<th><strong>Quantidade</strong></th>	
+	</tr>
+		
+	<% @orcamento.linhas.each do |linha| %>
+	<tr>
+		<td><%= linha.servico.descricao %></td>
+		<td><%= linha.quantidade %></td>
+	</tr>
+<% end %>
+</table>
+<br>
+<%= link_to 'Alterar', edit_orcamento_path(@orcamento) %> |
+<%= link_to 'Voltar', orcamentos_path %>

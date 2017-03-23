@@ -1,2 +1,41 @@
 <p id="notice"><%= notice %></p>
 <h1>Orçamentos <%= link_to '+', new_orcamento_path %></h1>
+
+<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+  <div>
+    Pesquisa
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+  <div>
+    Obra
+    <%= f.select(
+      :with_obra_id,
+      @filterrific.select_options[:with_obra_id],
+      { include_blank: '- Todos -' }
+    ) %>
+  </div>
+
+  <div>
+    Ordenado por
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+  </div>
+  <div>
+    <%= link_to(
+      'Limpar Filtros',
+      reset_filterrific_url,
+    ) %> &nbsp; <%= f.submit 'Filtrar' %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  
+<% end %>
+</td></tr></table>
+<br><br>
+
+<%= render(
+  partial: 'orcamentos/list',
+  locals: { orcamentos: @orcamentos }
+) %>
